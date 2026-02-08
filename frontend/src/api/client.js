@@ -3,12 +3,14 @@ import axios from "axios";
 const envBaseUrl = import.meta.env.VITE_API_URL;
 const fallbackPorts = Array.from({ length: 10 }, (_, idx) => 5000 + idx);
 const fallbackUrls = fallbackPorts.map((port) => `http://localhost:${port}/api`);
+
 const baseUrls = envBaseUrl
   ? [envBaseUrl, ...fallbackUrls.filter((url) => url !== envBaseUrl)]
   : fallbackUrls;
 
+
 const client = axios.create({
-  baseURL: baseUrls[0],
+  baseURL:import.meta.env.VITE_API_URL,
   timeout: 10000
 });
 
